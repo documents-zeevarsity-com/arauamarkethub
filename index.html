@@ -200,19 +200,26 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-he
 .pay-status.success{display:block;background:var(--green-bg);border:1px solid rgba(45,216,130,.3);color:var(--green);}
 .pay-note{font-size:.72rem;color:var(--text3);margin-top:.7rem;line-height:1.55;}
 
-/* CHAT WIDGET */
-.chat-widget{position:fixed;bottom:24px;right:24px;width:360px;height:520px;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-xl);box-shadow:var(--shadow);display:flex;flex-direction:column;z-index:300;overflow:hidden;transition:height .3s ease;}
-.chat-widget.minimized{height:64px;}
-.chat-head{background:linear-gradient(135deg,#1a2340,#1e2a4a);border-bottom:1px solid var(--border);padding:0 1.2rem;height:64px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;flex-shrink:0;}
-.chat-head-info{display:flex;align-items:center;gap:10px;}
-.chat-head-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold-dim),var(--gold));display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700;color:#0d0f14;flex-shrink:0;}
-.chat-head-name{font-family:var(--font-head);font-weight:600;font-size:.92rem;}
-.chat-head-status{font-size:.7rem;color:var(--green);}
-.chat-head-btns{display:flex;gap:6px;}
-.chat-head-btns button{background:rgba(255,255,255,.1);border:none;color:rgba(255,255,255,.7);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:.72rem;transition:background .15s;}
-.chat-head-btns button:hover{background:rgba(255,255,255,.2);color:white;}
+/* CHATS PANEL */
+.chats-layout{display:grid;grid-template-columns:280px 1fr;gap:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;height:calc(100vh - 280px);min-height:480px;}
+.conv-list{border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;}
+.conv-list-header{padding:1rem 1.2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.conv-list-header h3{font-family:var(--font-head);font-weight:700;font-size:1rem;}
+.conv-list-body{overflow-y:auto;flex:1;}
+.conv-item{padding:.85rem 1.2rem;display:flex;align-items:center;gap:10px;cursor:pointer;border-bottom:1px solid var(--border);transition:background .15s;}
+.conv-item:hover{background:var(--surface2);}
+.conv-item.active{background:var(--gold-bg);border-left:3px solid var(--gold);}
+.conv-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--gold-dim),var(--gold));display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700;color:#0d0f14;flex-shrink:0;}
+.conv-info{flex:1;min-width:0;}
+.conv-name{font-family:var(--font-head);font-weight:600;font-size:.88rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.conv-preview{font-size:.75rem;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px;}
+.conv-unread{background:var(--gold);color:#0d0f14;width:18px;height:18px;border-radius:50%;font-size:.62rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.chat-pane{display:flex;flex-direction:column;overflow:hidden;}
+.chat-pane-head{background:linear-gradient(135deg,#1a2340,#1e2a4a);padding:0 1.4rem;height:60px;display:flex;align-items:center;gap:12px;flex-shrink:0;}
+.chat-pane-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--gold-dim),var(--gold));display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;color:#0d0f14;flex-shrink:0;}
+.chat-pane-name{font-family:var(--font-head);font-weight:600;font-size:.92rem;}
+.chat-pane-status{font-size:.7rem;color:var(--green);}
 .chat-body{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:8px;}
-.chat-body.hidden{display:none;}
 .chat-placeholder{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--text3);font-size:.85rem;padding:1rem;}
 .msg-wrap{display:flex;flex-direction:column;}
 .msg-wrap.sent{align-items:flex-end;}
@@ -221,13 +228,17 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-he
 .msg.sent{background:var(--gold);color:#0d0f14;border-bottom-right-radius:4px;}
 .msg.received{background:var(--surface2);color:var(--text);border-bottom-left-radius:4px;}
 .msg-time{font-size:.63rem;color:var(--text3);margin-top:2px;}
-.chat-foot{padding:10px;border-top:1px solid var(--border);display:flex;gap:8px;background:var(--surface);flex-shrink:0;}
-.chat-foot.hidden{display:none;}
+.chat-foot{padding:10px 1rem;border-top:1px solid var(--border);display:flex;gap:8px;background:var(--surface);flex-shrink:0;}
 .chat-input{flex:1;background:var(--bg);border:1px solid var(--border2);color:var(--text);padding:9px 14px;border-radius:50px;font-family:var(--font-body);font-size:.85rem;outline:none;transition:border-color .2s;}
 .chat-input:focus{border-color:var(--gold-dim);}
 .chat-input::placeholder{color:var(--text3);}
 .send-btn{background:var(--gold);border:none;color:#0d0f14;width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:.88rem;flex-shrink:0;transition:background .15s;}
 .send-btn:hover{background:#f0c95a;}
+@media(max-width:700px){
+  .chats-layout{grid-template-columns:1fr;height:auto;min-height:unset;}
+  .conv-list{border-right:none;border-bottom:1px solid var(--border);max-height:260px;}
+  .chat-pane{min-height:400px;}
+}
 
 /* TOAST */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--surface2);border:1px solid var(--border2);color:var(--text);padding:11px 22px;border-radius:50px;font-size:.87rem;z-index:900;transition:transform .3s ease;white-space:nowrap;box-shadow:var(--shadow);}
@@ -390,18 +401,8 @@ footer span{color:var(--gold);}
   .pay-method-grid{grid-template-columns:1fr 1fr;}
   .sub-plans-grid{grid-template-columns:1fr;}
 
-  /* Chat widget — full-width bottom sheet on mobile */
-  .chat-widget{
-    width:100%;right:0;bottom:0;
-    border-radius:var(--radius-xl) var(--radius-xl) 0 0;
-    border-bottom:none;
-    height:75dvh;
-    max-height:75dvh;
-  }
-  .chat-widget.minimized{height:60px;max-height:60px;}
-
-  /* Toast — keep above chat */
-  .toast{bottom:80px;font-size:.8rem;padding:9px 18px;}
+  /* Toast */
+  .toast{bottom:24px;font-size:.8rem;padding:9px 18px;}
 
   /* Footer */
   footer{padding:1.5rem 1rem;}
@@ -414,7 +415,7 @@ footer span{color:var(--gold);}
 <header class="header">
   <div class="logo" onclick="setPanel('browse')">Arua Market<span>Hub</span><sub>Connect &amp; Shop</sub></div>
   <div class="header-right">
-    <button class="chat-notif-btn" id="globalChatBtn">
+    <button class="chat-notif-btn" id="globalChatBtn" onclick="handleChatBtnClick()">
       <i class="fas fa-comment-dots"></i><span class="chat-btn-label"> Chats</span>
     </button>
     <button class="btn btn-ghost" id="loginBtn">Sign In</button>
@@ -498,6 +499,7 @@ footer span{color:var(--gold);}
 <div class="tabs-bar">
   <button class="tab active" id="tabBrowse" onclick="setPanel('browse')"><i class="fas fa-store" style="margin-right:5px;"></i>Browse</button>
   <button class="tab" id="tabFavs" onclick="setPanel('favs')"><i class="fas fa-heart" style="margin-right:5px;"></i>Favourites<span class="tab-badge" id="favBadge" style="display:none;"></span></button>
+  <button class="tab" id="tabChats" onclick="setPanel('chats')"><i class="fas fa-comment-dots" style="margin-right:5px;"></i>Chats<span class="tab-badge" id="chatBadge" style="display:none;"></span></button>
   <button class="tab" id="tabMyShop" style="display:none;" onclick="setPanel('myShop')"><i class="fas fa-building" style="margin-right:5px;"></i>My Shop</button>
   <button class="tab" id="tabPost" style="display:none;" onclick="setPanel('post')"><i class="fas fa-plus-circle" style="margin-right:5px;"></i>Post Ad</button>
 </div>
@@ -576,6 +578,42 @@ footer span{color:var(--gold);}
           <button type="submit" class="btn btn-gold" style="width:100%;padding:12px;font-size:.95rem;">Publish Listing</button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- CHATS -->
+  <div id="panelChats" style="display:none;">
+    <div class="chats-layout" id="chatsLayout">
+      <!-- Conversation list -->
+      <div class="conv-list">
+        <div class="conv-list-header">
+          <h3><i class="fas fa-comment-dots" style="color:var(--gold);margin-right:7px;"></i>Messages</h3>
+          <span id="convCount" style="font-size:.75rem;color:var(--text3);"></span>
+        </div>
+        <div class="conv-list-body" id="convListBody"></div>
+      </div>
+      <!-- Chat pane -->
+      <div class="chat-pane" id="chatPane">
+        <div class="chat-pane-head" id="chatPaneHead" style="display:none;">
+          <div class="chat-pane-avatar" id="chatPaneAvatar">?</div>
+          <div>
+            <div class="chat-pane-name" id="chatPaneName"></div>
+            <div class="chat-pane-status">● Online</div>
+          </div>
+        </div>
+        <div class="chat-body" id="chatBody">
+          <div class="chat-placeholder" id="chatPlaceholder">
+            <div>
+              <i class="fas fa-comment-dots" style="font-size:2rem;color:var(--text3);display:block;margin-bottom:10px;"></i>
+              Select a conversation or click <strong style="color:var(--text);">Chat Seller</strong> on any listing to start talking.
+            </div>
+          </div>
+        </div>
+        <div class="chat-foot" id="chatFoot" style="display:none;">
+          <input class="chat-input" id="chatInput" placeholder="Type a message…" onkeypress="chatKeyPress(event)">
+          <button class="send-btn" onclick="sendChat()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -940,35 +978,6 @@ footer span{color:var(--gold);}
   </div>
 </div>
 
-<!-- ═══ CHAT WIDGET ═══ -->
-<div class="chat-widget minimized" id="chatWidget">
-  <div class="chat-head" onclick="toggleChat(event)">
-    <div class="chat-head-info">
-      <div class="chat-head-avatar" id="chatAvatar">MH</div>
-      <div>
-        <div class="chat-head-name" id="chatTitle">Arua MarketHub Chats</div>
-        <div class="chat-head-status">● Online</div>
-      </div>
-    </div>
-    <div class="chat-head-btns" onclick="event.stopPropagation()">
-      <button onclick="minimizeChat()" title="Minimize"><i class="fas fa-minus"></i></button>
-      <button onclick="closeChat()" title="Close"><i class="fas fa-times"></i></button>
-    </div>
-  </div>
-  <div class="chat-body" id="chatBody">
-    <div class="chat-placeholder" id="chatPlaceholder">
-      <div>
-        <i class="fas fa-comment-dots" style="font-size:2rem;color:var(--text3);display:block;margin-bottom:10px;"></i>
-        Click <strong style="color:var(--text);">Chat Seller</strong> on any listing to start a conversation.
-      </div>
-    </div>
-  </div>
-  <div class="chat-foot" id="chatFoot">
-    <input class="chat-input" id="chatInput" placeholder="Type a message…" onkeypress="chatKeyPress(event)">
-    <button class="send-btn" onclick="sendChat()"><i class="fas fa-paper-plane"></i></button>
-  </div>
-</div>
-
 <div class="toast" id="toast"></div>
 
 <script>
@@ -1291,8 +1300,8 @@ function renderFavs(){
    PANELS
 ══════════════════════════════════════════ */
 function setPanel(p){
-  ['panelBrowse','panelFavs','panelMyShop','panelPost'].forEach(id=>document.getElementById(id).style.display='none');
-  ['tabBrowse','tabFavs','tabMyShop','tabPost'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('active');});
+  ['panelBrowse','panelFavs','panelChats','panelMyShop','panelPost'].forEach(id=>document.getElementById(id).style.display='none');
+  ['tabBrowse','tabFavs','tabChats','tabMyShop','tabPost'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('active');});
   if(p==='browse'){
     document.getElementById('panelBrowse').style.display='block';
     document.getElementById('tabBrowse').classList.add('active');
@@ -1301,6 +1310,10 @@ function setPanel(p){
     document.getElementById('panelFavs').style.display='block';
     document.getElementById('tabFavs').classList.add('active');
     renderFavs();
+  }else if(p==='chats'){
+    document.getElementById('panelChats').style.display='block';
+    document.getElementById('tabChats').classList.add('active');
+    renderChatsPanel();
   }else if(p==='myShop'){
     if(!currentUser){toast('Please sign in first.');openAuth('login');return;}
     if(!shopByOwner(currentUser.id)){toast('Register your shop first.');openShopModal();return;}
@@ -1743,17 +1756,95 @@ function submitAd(e){
 function cid(a,b){return[a,b].sort().join('__');}
 function getMsgs(u1,u2){return messages.filter(m=>cid(m.from,m.to)===cid(u1,u2)).sort((a,b)=>new Date(a.ts)-new Date(b.ts));}
 
+/* Get all unique conversation partners for current user */
+function getConversations(){
+  if(!currentUser)return[];
+  const partners={};
+  messages.forEach(m=>{
+    if(m.from===currentUser.id||m.to===currentUser.id){
+      const otherId=m.from===currentUser.id?m.to:m.from;
+      if(!partners[otherId]||new Date(m.ts)>new Date(partners[otherId].lastTs)){
+        partners[otherId]={otherId,lastMsg:m.text,lastTs:m.ts};
+      }
+    }
+  });
+  return Object.values(partners).sort((a,b)=>new Date(b.lastTs)-new Date(a.lastTs));
+}
+
+function getUnreadCount(otherId){
+  if(!currentUser)return 0;
+  return messages.filter(m=>m.to===currentUser.id&&m.from===otherId&&!m.read).length;
+}
+
+function getTotalUnread(){
+  if(!currentUser)return 0;
+  return messages.filter(m=>m.to===currentUser.id&&!m.read).length;
+}
+
+function handleChatBtnClick(){
+  if(!currentUser){toast('Sign in to view your chats.');openAuth('login');return;}
+  setPanel('chats');
+}
+
 function startChat(ownerId,shopName,itemTitle){
   if(!currentUser){toast('Sign in to chat with sellers.');openAuth('login');return;}
   if(currentUser.id===ownerId){toast("That's your own listing!");return;}
-  currentConvWith=ownerId;
-  const seller=users.find(u=>u.id===ownerId);
-  const displayName=shopName||(seller?seller.name:'Seller');
-  document.getElementById('chatTitle').textContent='Chat — '+displayName;
-  document.getElementById('chatAvatar').textContent=initials(seller?seller.name:displayName);
-  document.getElementById('chatWidget').classList.remove('minimized');
+  setPanel('chats');
+  openConversation(ownerId, shopName);
   document.getElementById('chatInput').placeholder=`Ask about "${itemTitle.substring(0,28)}…"`;
+}
+
+function renderChatsPanel(){
+  if(!currentUser){
+    document.getElementById('convListBody').innerHTML=`<div style="padding:2rem 1.2rem;text-align:center;color:var(--text3);font-size:.85rem;">
+      <i class="fas fa-lock" style="font-size:2rem;display:block;margin-bottom:10px;"></i>
+      Sign in to view your messages.<br>
+      <button class="btn btn-gold" style="margin-top:1rem;font-size:.82rem;" onclick="openAuth('login')">Sign In</button>
+    </div>`;
+    document.getElementById('convCount').textContent='';
+    return;
+  }
+  const convs=getConversations();
+  document.getElementById('convCount').textContent=convs.length?`${convs.length} chat${convs.length!==1?'s':''}` :'';
+  if(!convs.length){
+    document.getElementById('convListBody').innerHTML=`<div style="padding:2rem 1.2rem;text-align:center;color:var(--text3);font-size:.85rem;">
+      <i class="fas fa-comment-slash" style="font-size:2rem;display:block;margin-bottom:10px;"></i>
+      No conversations yet.<br>Click <strong style="color:var(--text);">Chat Seller</strong> on any listing.
+    </div>`;
+    return;
+  }
+  document.getElementById('convListBody').innerHTML=convs.map(c=>{
+    const other=users.find(u=>u.id===c.otherId);
+    const name=other?other.name:'Unknown';
+    const unread=getUnreadCount(c.otherId);
+    const isActive=currentConvWith===c.otherId;
+    return`<div class="conv-item${isActive?' active':''}" onclick="openConversation('${c.otherId}','${esc(name)}')">
+      <div class="conv-avatar">${initials(name)}</div>
+      <div class="conv-info">
+        <div class="conv-name">${esc(name)}</div>
+        <div class="conv-preview">${esc(c.lastMsg)}</div>
+      </div>
+      ${unread>0?`<div class="conv-unread">${unread>9?'9+':unread}</div>`:''}
+    </div>`;
+  }).join('');
+}
+
+function openConversation(otherId, displayName){
+  currentConvWith=otherId;
+  const other=users.find(u=>u.id===otherId);
+  const name=displayName||(other?other.name:'User');
+  // Mark messages as read
+  messages.forEach(m=>{if(m.to===currentUser.id&&m.from===otherId)m.read=true;});
+  save();
+  // Update head
+  const head=document.getElementById('chatPaneHead');
+  head.style.display='flex';
+  document.getElementById('chatPaneAvatar').textContent=initials(name);
+  document.getElementById('chatPaneName').textContent=name;
+  document.getElementById('chatFoot').style.display='flex';
+  document.getElementById('chatInput').focus();
   renderChatMsgs();
+  renderChatsPanel(); // refresh conv list to update active + badges
   updateChatBadge();
 }
 
@@ -1762,7 +1853,11 @@ function renderChatMsgs(){
   const msgs=getMsgs(currentUser.id,currentConvWith);
   const body=document.getElementById('chatBody');
   const ph=document.getElementById('chatPlaceholder');
-  if(!msgs.length){ph.style.display='flex';body.querySelectorAll('.msg-wrap').forEach(m=>m.remove());return;}
+  if(!msgs.length){
+    ph.style.display='flex';
+    body.querySelectorAll('.msg-wrap').forEach(m=>m.remove());
+    return;
+  }
   ph.style.display='none';
   body.innerHTML=msgs.map(m=>{
     const sent=m.from===currentUser.id;
@@ -1776,27 +1871,32 @@ function renderChatMsgs(){
 
 function sendChat(){
   if(!currentUser){toast('Sign in to send messages.');return;}
-  if(!currentConvWith){toast('Open a conversation first.');return;}
+  if(!currentConvWith){toast('Select a conversation first.');return;}
   const inp=document.getElementById('chatInput');
   const text=inp.value.trim();
   if(!text)return;
-  messages.push({id:'m_'+Date.now(),from:currentUser.id,to:currentConvWith,text,ts:new Date().toISOString()});
-  save(); inp.value=''; renderChatMsgs(); updateChatBadge();
+  messages.push({id:'m_'+Date.now(),from:currentUser.id,to:currentConvWith,text,ts:new Date().toISOString(),read:false});
+  save(); inp.value=''; renderChatMsgs(); renderChatsPanel(); updateChatBadge();
 }
 function chatKeyPress(e){if(e.key==='Enter')sendChat();}
-function toggleChat(e){document.getElementById('chatWidget').classList.toggle('minimized');}
-function minimizeChat(){document.getElementById('chatWidget').classList.add('minimized');}
-function closeChat(){document.getElementById('chatWidget').classList.add('minimized');currentConvWith=null;}
 
 function updateChatBadge(){
-  if(!currentUser){const b=document.querySelector('.notif-badge');if(b)b.remove();return;}
-  const unread=messages.filter(m=>m.to===currentUser.id&&cid(m.from,m.to)!==cid(currentUser.id,currentConvWith||'_')).length;
-  const btn=document.getElementById('globalChatBtn');
-  let badge=btn.querySelector('.notif-badge');
+  const unread=getTotalUnread();
+  const badge=document.getElementById('chatBadge');
+  const headerBadge=document.querySelector('#globalChatBtn .notif-badge');
   if(unread>0){
-    if(!badge){badge=document.createElement('span');badge.className='notif-badge';btn.appendChild(badge);}
-    badge.textContent=unread>9?'9+':unread;
-  }else{if(badge)badge.remove();}
+    if(badge){badge.textContent=unread>9?'9+':unread;badge.style.display='inline-flex';}
+    if(!headerBadge){
+      const b=document.createElement('span');b.className='notif-badge';
+      document.getElementById('globalChatBtn').appendChild(b);
+    }
+    const hb=document.querySelector('#globalChatBtn .notif-badge');
+    if(hb)hb.textContent=unread>9?'9+':unread;
+  }else{
+    if(badge)badge.style.display='none';
+    const hb=document.querySelector('#globalChatBtn .notif-badge');
+    if(hb)hb.remove();
+  }
 }
 
 /* ══════════════════════════════════════════
@@ -1894,10 +1994,6 @@ function updateMobileMenu(){
 document.getElementById('loginBtn').onclick=()=>openAuth('login');
 document.getElementById('userPill').onclick=()=>openProfileModal();
 document.getElementById('heroShopBtn').onclick=()=>{if(!currentUser){openAuth('login');}else{openShopModal();}};
-document.getElementById('globalChatBtn').onclick=()=>{
-  if(!currentUser){toast('Sign in to view your chats.');openAuth('login');return;}
-  document.getElementById('chatWidget').classList.toggle('minimized');
-};
 // Close modals on backdrop click
 document.getElementById('authModal').onclick=e=>{if(e.target===document.getElementById('authModal'))closeAuth();};
 document.getElementById('shopModal').onclick=e=>{if(e.target===document.getElementById('shopModal'))closeShopModal();};
@@ -1914,7 +2010,7 @@ window.onload=()=>{
   setInterval(()=>{
     if(currentUser){
       updateChatBadge();
-      if(currentConvWith&&!document.getElementById('chatWidget').classList.contains('minimized'))renderChatMsgs();
+      if(currentConvWith&&document.getElementById('panelChats').style.display!=='none')renderChatMsgs();
     }
   },3000);
 };
